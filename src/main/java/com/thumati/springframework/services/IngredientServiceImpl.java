@@ -1,15 +1,14 @@
 package com.thumati.springframework.services;
 
+import com.thumati.springframework.commands.IngredientCommand;
 import com.thumati.springframework.converters.IngredientCommandToIngredient;
 import com.thumati.springframework.converters.IngredientToIngredientCommand;
-import com.thumati.springframework.repositories.RecipeRepository;
-import com.thumati.springframework.repositories.UnitOfMeasureRepository;
-import com.thumati.springframework.commands.IngredientCommand;
 import com.thumati.springframework.domain.Ingredient;
 import com.thumati.springframework.domain.Recipe;
+import com.thumati.springframework.repositories.RecipeRepository;
+import com.thumati.springframework.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -52,11 +51,13 @@ public class IngredientServiceImpl implements IngredientService {
             log.error("Ingredient id not found: " + ingredientId);
         }
 
+        IngredientCommand ingredientCommand = ingredientCommandOptional.get();
+        ingredientCommand.setRecipeId(recipeId);
+
         return ingredientCommandOptional.get();
     }
 
     @Override
-    @Transactional
     public IngredientCommand saveIngredientCommand(IngredientCommand command) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
 
@@ -104,7 +105,7 @@ public class IngredientServiceImpl implements IngredientService {
                         .findFirst();
             }
 
-            //to do check for fail
+            //todo check for fail
             return ingredientToIngredientCommand.convert(savedIngredientOptional.get());
         }
 

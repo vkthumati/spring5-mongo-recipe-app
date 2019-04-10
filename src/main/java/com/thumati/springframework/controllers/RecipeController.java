@@ -1,7 +1,7 @@
 package com.thumati.springframework.controllers;
 
-import com.thumati.springframework.exceptions.NotFoundException;
 import com.thumati.springframework.commands.RecipeCommand;
+import com.thumati.springframework.exceptions.NotFoundException;
 import com.thumati.springframework.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

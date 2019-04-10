@@ -1,7 +1,7 @@
 package com.thumati.springframework.services;
 
-import com.thumati.springframework.repositories.RecipeRepository;
 import com.thumati.springframework.domain.Recipe;
+import com.thumati.springframework.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
